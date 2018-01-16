@@ -225,7 +225,7 @@ class ZabbixAPI(object):
 
         if self.httpuser:
             self.debug(logging.INFO, "HTTP Auth enabled")
-            auth = 'Basic ' + string.strip(base64.encodestring(self.httpuser + ':' + self.httppasswd))
+            auth = 'Basic ' + string.strip(base64.encodestring(self.httpuser + ':' + self.httppasswd).replace('\n', '').replace('\r', ''))
             headers['Authorization'] = auth
         self.r_query.append(str(json_obj))
         self.debug(logging.INFO, "Sending: " + str(json_obj))
